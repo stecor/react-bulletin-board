@@ -9,9 +9,8 @@ export default class Board extends Component {
   constructor(props){
     super(props);
     this.state = {
-      notes: [
-
-      ]
+      notes: [],
+      count: 50
     }
     this.eachNote = this.eachNote.bind(this);
     this.add = this.add.bind(this);
@@ -22,8 +21,8 @@ export default class Board extends Component {
 
   componentWillMount(){
     var self = this
-    if(this.props.count) {
-      fetch(`https://baconipsum.com/api/?type=all-meat&sentences=${this.props.count}`)
+    if(this.state.count) {
+      fetch(`https://baconipsum.com/api/?type=all-meat&sentences=${this.state.count}`)
             .then(response => response.json())
             .then(json => json[0]
                               .split('. ')
